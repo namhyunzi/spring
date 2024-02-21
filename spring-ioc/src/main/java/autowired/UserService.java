@@ -15,6 +15,8 @@ public class UserService {
 	
 	public void 회원가입() {
 		System.out.println("조립된 객체: " + userDao);
+		System.out.println();
+		
 		userDao.getUser();
 		userDao.insertUser();
 	}

@@ -3,6 +3,7 @@ package autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
+//@Primary
 public class UserJdbcDao implements UserDao {
 
 	@Override
