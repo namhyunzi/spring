@@ -35,8 +35,16 @@ public class UserDao {
 	}
 	
 	public User getUserById(String id) {
-		//String sql= "select * from sample_users where user_id = ?";
-		//return template.queryForObject(sql, null);
-		return null;
+	      String sql = "select * from sample_users where user_id = ?";
+	      return template.queryForObject(sql, (rs, rownum) -> {
+	         User user = new User();
+	         user.setId(rs.getString("user_id"));
+	         user.setPassword(rs.getString("user_password"));
+	         user.setName(rs.getString("user_name"));
+	         user.setTel(rs.getString("user_tel"));
+	         user.setEmail(rs.getString("user_email"));
+	         return user;
+	      }, id);
+	   }
+		
 	}
-} 
