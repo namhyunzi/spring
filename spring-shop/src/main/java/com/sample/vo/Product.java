@@ -2,6 +2,8 @@ package com.sample.vo;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@Alias("Product")
 public class Product {
 	
 	private int no;
@@ -40,5 +43,12 @@ public class Product {
 		this.createdDate = createdDate;
 	}
 	
-	
-}
+	public String getStatusText() {
+		if ("SELL".equals(status)) {
+			return "판매중";
+		} else if ("SOLD_OUT".equals(status)) {
+			return"품절";
+		}
+		return null;
+	}
+} 
