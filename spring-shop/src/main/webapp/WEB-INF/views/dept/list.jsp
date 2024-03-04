@@ -16,31 +16,40 @@
 <div class="container">
 	<div class="row mb-3">
 		<div class="col-12">
-			<h1 class="fs-3">상품관리 - 상품 상세정보</h1>
+			<h1 class="fs-3">부서관리 - 부서 목록 정보 </h1>
 			
-			<div class="row">
-					<div class="col-5">
-						<img src="/resources/images/product/${product.filename }" class="img-thumbnail" />
-					</div>
-					<div class="col-8">
-						<table class="table">
-							<tr>
-								<th>이름</th>
-								<td colspan="3">${product.name }</td>
-							</tr>
-							<tr>
-								<th>등록일</th>
-								<td><fmt:formatDate value="${emp.createdDate }" pattern="yyyy-MM-dd"/></td>
-								<th>수정일</th>
-								<td><fmt:formatDate value="${emp.updatedDate }" pattern="yyyy-MM-dd"/></td>
-							</tr>
-						</table>
-						
-					<div class="text-end">
-						<a href="" class="btn btn-primary">수정</a>
-						<a href="" class="btn btn-danger">삭제</a>
-					</div>
-				</div>	
+			<table class="table">
+				<colgroup>
+						<col width="20%">
+						<col width="20">
+						<col width="20%">
+						<col width="20%">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>이름</th>
+						<th>전화번호</th>
+						<th>팩스번호</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="dept" items="${deptList }">
+						<tr>
+							<td>${dept.no }</td>
+							<td>${dept.name }</td>
+							<td>${dept.tel }</td>
+							<td>${dept.fax }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<div class="col-12">
+			<div class="text-end">
+				<a href="add" class="btn btn-primary">신규 부서 등록</a>
 			</div>
 		</div>
 	</div>

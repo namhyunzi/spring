@@ -16,17 +16,30 @@
 <div class="container">
 	<div class="row mb-3">
 		<div class="col-12">
-			<h1 class="fs-3">상품관리 - 상품 상세정보</h1>
+			<h1 class="fs-3">직원관리 - 직원 상세정보</h1>
 			
 			<div class="row">
-					<div class="col-5">
-						<img src="/resources/images/product/${product.filename }" class="img-thumbnail" />
-					</div>
 					<div class="col-8">
 						<table class="table">
 							<tr>
 								<th>이름</th>
-								<td colspan="3">${product.name }</td>
+								<td>${emp.name }</td>
+								<th>전화번호</th>
+								<td>${emp.tel }</td>
+							</tr>
+							<tr>
+								<th>이메일</th>
+								<td>${emp.email }</td>
+								<th>급여</th>
+								<td>${emp.salary }</td>
+							</tr>
+							<tr>
+							</tr>
+							<tr>
+								<th>고용일</th>
+								<td><fmt:formatDate value="${emp.hireDate }" pattern="yyyy-MM-dd"/></td>
+								<th>부서번호</th>
+								<td>${emp.dept.no }</td>
 							</tr>
 							<tr>
 								<th>등록일</th>
@@ -37,7 +50,7 @@
 						</table>
 						
 					<div class="text-end">
-						<a href="" class="btn btn-primary">수정</a>
+						<a href="modify?no=${emp.no }" class="btn btn-primary">수정</a>
 						<a href="" class="btn btn-danger">삭제</a>
 					</div>
 				</div>	

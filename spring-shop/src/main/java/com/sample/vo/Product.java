@@ -15,7 +15,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Alias("Product")
 public class Product {
 	
 	private int no;

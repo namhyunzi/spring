@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.mapper.EmpMapper">
+	
+	<select id="getAllEmps" resultType="com.sample.vo.Emp">
+		select 
+			emp_no				as no,
+			emp_name 			as name, 
+			emp_tel 			as tel,
+			emp_email			as email,
+			emp_salary 			as salary,
+			emp_hire_date		as hireDate,
+			dept_no			    as "dept.no",
+			emp_created_date	as createdDate,
+			emp_updated_date	as updatedDate
+		from
+			shop_employees
+		order by
+			emp_no desc
+	</select>
+			
+	<insert id="insertEmp" parameterType="com.sample.vo.Emp">
+		insert into shop_employees 
+		(emp_no, emp_name, emp_tel, emp_email, emp_salary, emp_hire_date, dept_no)
+		values
+		(emps_seq.nextval, #{name}, #{tel}, #{email}, #{salary}, #{hireDate}, #{dept.no})
+	</insert>
+	
+	<select id="getEmployeeByNo" parameterType="int" resultType="com.sample.vo.Emp">
+		select 
+			emp_no				as no,
+			emp_name 			as name, 
+			emp_tel 			as tel,
+			emp_email			as email,
+			emp_salary 			as salary,
+			emp_hire_date		as hireDate,
+			dept_no			    as "dept.no",
+			emp_created_date	as createdDate,
+			emp_updated_date	as updatedDate
+		from
+			shop_employees
+		where 
+			emp_no = #{value}	
+	</select>
+	
+	<update id="modifyEmployees" parameterType="com.sample.vo.Emp">
+		update shop_employees
+		set
+			emp_no				= #{no},
+			emp_name 			= #{name},
+			emp_tel 			= #{tel},
+			emp_email			= #{email},
+			emp_salary 			= #{salary},
+			emp_hire_date		= #{hireDate},
+			dept_no			    = #{dept.no}
+		where 
+			emp_no = #{no}	
+	</update>
+	
+	<delete id="deleteEmployees">
+		delete from 
+			shop_employees
+		where employee_no in
+	 		<foreach item="no"   collection="noList" open="(" separator="," close=")">
+	 		 	#{no}
+	 		</foreach>
+				
+	
+	</delete>
+</mapper>
