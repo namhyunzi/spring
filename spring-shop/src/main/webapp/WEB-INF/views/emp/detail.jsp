@@ -51,7 +51,7 @@
 						
 					<div class="text-end">
 						<a href="modify?no=${emp.no }" class="btn btn-primary">수정</a>
-						<a href="" class="btn btn-danger">삭제</a>
+						<a href="deleteone?no=${emp.no }" class="btn btn-danger">삭제</a>
 					</div>
 				</div>	
 			</div>

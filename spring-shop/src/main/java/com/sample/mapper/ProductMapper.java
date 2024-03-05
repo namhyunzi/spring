@@ -15,7 +15,6 @@ public interface ProductMapper {
 	List<Product> getProducts(Criteria criteria);
 	
 	void insertProduct(Product product);
-	List<Product> getAllProducts();
 	Product getProductByNo(int no);
 	void deleteProducts(@Param("noList") List<Integer> noList);
 	

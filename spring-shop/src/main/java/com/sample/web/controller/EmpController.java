@@ -14,6 +14,8 @@ import com.sample.mapper.EmpMapper;
 import com.sample.service.HrService;
 import com.sample.vo.Dept;
 import com.sample.vo.Emp;
+import com.sample.web.dto.Criteria;
+import com.sample.web.dto.ListDto;
 import com.sample.web.form.EmpCreateForm;
 import com.sample.web.form.EmpModifyForm;
 
@@ -34,9 +36,14 @@ public class EmpController {
 	}
 	
 	@GetMapping("/list")
-	public String list(Model model) {
-		List<Emp> empList = hrService.getAllEmps();
-		model.addAttribute("empList", empList);
+	public String list(@RequestParam (name = "page", required = false, defaultValue = "1") int page, Model model) {
+		Criteria criteria = new Criteria();
+		criteria.setPage(page);
+		
+		ListDto<Emp> dto = hrService.getEmps(criteria);
+		model.addAttribute("empList", dto.getItems());
+		model.addAttribute("paging", dto.getPaging());
+		model.addAttribute("criteria", criteria);
 		return "emp/list";
 	}
 	
@@ -67,7 +74,7 @@ public class EmpController {
 	@PostMapping("/modify")
 	public String modify(int no, EmpModifyForm empModifyForm) {
 		hrService.modifyEmployee(no, empModifyForm);
-			return "redirect:list";
+			return "redirect:detail?no="+ no;
 		
 	}
 	
@@ -75,6 +82,12 @@ public class EmpController {
 	public String delete(@RequestParam("no") List<Integer> noList) {
 		hrService.deleteEmployees(noList);
 		
+		return "redirect:list";
+	}
+	
+	@GetMapping("/deleteone")
+	public String deleteone(int no) {
+		hrService.deletEmployee(no);
 		return "redirect:list";
 	}
 	

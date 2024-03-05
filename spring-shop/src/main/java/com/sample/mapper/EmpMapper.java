@@ -6,12 +6,15 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.sample.vo.Emp;
+import com.sample.web.dto.Criteria;
 
 @Mapper
 public interface EmpMapper {
 	
-	List<Emp> getAllEmps();
-
+	int getTotalRows(Criteria criteria);
+	
+	List<Emp> getEmps(Criteria criteria);
+	
 	void insertEmp(Emp emp);
 
 	void modifyEmployees(int no);
@@ -21,5 +24,7 @@ public interface EmpMapper {
 	void modifyEmployees(Emp emp);
 
 	void deleteEmployees(@Param("noList") List<Integer> noList);
+
+	void deleteEmployee(int no);
 	
 }

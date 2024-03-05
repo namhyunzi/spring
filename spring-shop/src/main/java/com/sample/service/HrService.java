@@ -10,6 +10,9 @@ import com.sample.mapper.EmpMapper;
 import com.sample.vo.Dept;
 import com.sample.vo.Emp;
 import com.sample.vo.Product;
+import com.sample.web.dto.Criteria;
+import com.sample.web.dto.ListDto;
+import com.sample.web.dto.Pagination;
 import com.sample.web.form.DeptCreateForm;
 import com.sample.web.form.EmpCreateForm;
 import com.sample.web.form.EmpModifyForm;
@@ -37,8 +40,18 @@ public class HrService {
 		deptMapper.insertDept(dept);
 	}
 	
-	public List<Emp> getAllEmps() {
-		return empMapper.getAllEmps();
+	public ListDto<Emp> getEmps(Criteria criteria) {
+		
+		int totalRows = empMapper.getTotalRows(criteria);
+		Pagination pagination = new Pagination(criteria.getPage(), totalRows, criteria.getRows());
+		criteria.setBegin(pagination.getBegin());
+		criteria.setEnd(pagination.getEnd());
+		
+		List<Emp> empList = empMapper.getEmps(criteria);
+		
+		ListDto<Emp> dto = new ListDto<Emp>(empList, pagination);
+		
+		return dto;
 	}
 	
 	public void addEmployee(EmpCreateForm form) {
@@ -87,6 +100,11 @@ public class HrService {
 
 	public void deleteEmployees(List<Integer> noList) {
 		empMapper.deleteEmployees(noList);
+		
+	}
+
+	public void deletEmployee(int no) {
+		empMapper.deleteEmployee(no);
 		
 	}
 }
