@@ -70,4 +70,20 @@ public class HomeController {
 		
 		return "redirect:/";
 	}
+	
+	/*
+	 * 요청 방식 
+	 * 		GET
+	 * 요청 URL
+	 * 		localhost/login
+	 * 요청내용
+	 * 		로그인폼 화면을 요청한다. 
+	 * 처리내용
+	 * 		뷰페이지(로그인 폼 화면, loginform.jsp) 이름을 반환한다. 
+	 */
+	@GetMapping("/login")
+	public String loginform() {
+		return "loginform";
+		
+	}
 }
