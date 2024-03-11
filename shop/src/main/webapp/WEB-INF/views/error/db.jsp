@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isErrorPage="true"%>
+<%--
+	<%@ page isErrorpage="true" %>
+	 	+ isErrorpage는 이 JSP 페이지를 에러 페이지로 지정하는 속성이다. 
+	 	+ isErrorpage 속성의 기본값은 false다. 
+	 	+ 에러 페이지로 사용되는 JSP는 isErrorPage 속성값을 true로 설정한다. 
+	 	+ isErrorPage를 true로 설정하면 이 JSP 내장객체에 exception 내장객체가 추가된다. 
+ --%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,6 +23,7 @@
 	<div class="row mb-3">
 		<h1>오류 페이지</h1>
 		<p>데이터베이스 엑세스 작업중 오류가 발생하였습니다.</p>
+		<p>오류 메세지 : <%=exception.getMessage() %></p>
 	</div>
 </div>
 
