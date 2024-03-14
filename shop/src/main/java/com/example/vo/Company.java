@@ -1,12 +1,14 @@
 package com.example.vo;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class Company {
 	private int no;
 	private String name;
@@ -14,4 +16,8 @@ public class Company {
 	private String zipcode;
 	private String address1;
 	private String adderess2;
+	
+	public Company(int no) {
+		this.no = no;
+	}
 }
